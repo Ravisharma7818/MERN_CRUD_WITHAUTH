@@ -3,10 +3,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
+const dotenv = require("dotenv")
 // const routes = require("./routes/TodoRoute");
-
+dotenv.config()
+const URI = process.env.MONGO_URI;
 const app = express();
-
 app.listen(4000||process.env.PORT, (err) => {
   if (err) {
     console.log(err);
@@ -16,7 +17,7 @@ app.listen(4000||process.env.PORT, (err) => {
 });
 
 mongoose
-  .connect('mongodb+srv://Ravi:RaviSharma@cluster0.a5r31.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  .connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
